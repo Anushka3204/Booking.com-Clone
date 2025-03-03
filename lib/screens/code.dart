@@ -11,7 +11,8 @@ class ItineraryScreen extends StatefulWidget {
 class _ItineraryScreenState extends State<ItineraryScreen> {
   final TextEditingController _destinationController = TextEditingController();
   final TextEditingController _preferencesController = TextEditingController();
-  final TextEditingController _daysController = TextEditingController();
+  final TextEditingController _daysController =
+      TextEditingController(); // New controller for number of days
   bool _isLoading = false;
   String _itinerary = "";
 
@@ -40,7 +41,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
           "parts": [
             {
               "text":
-                  "Imagine you are an expert travel agent with years of experience crafting the most exciting and personalized trips. Your task is to design a detailed ${_daysController.text}-day itinerary for an unforgettable journey to ${_destinationController.text}, perfectly tailored to the traveler's preferences: ${_preferencesController.text}. This itinerary should blend a mix of iconic landmarks, breathtaking natural wonders, and hidden local gems that most tourists overlook. Provide carefully curated recommendations for sightseeing, thrilling activities, cultural experiences, and must-try local dishes, ensuring a rich and immersive travel experience. Offer helpful travel tips, including the best times to visit each location, transportation options, and budget-friendly hacks. Keep the tone lively, engaging, and playful, making the traveler feel as if they have a knowledgeable yet fun-loving guide by their side. The itinerary should be structured yet flexible, allowing room for spontaneity and adventure. Make sure to strike the perfect balance between relaxation and exploration, ensuring an enriching yet enjoyable journey. Keep the details concise but vivid, painting a picture of the experience without overwhelming the traveler with excessive information. Your goal is to create an itinerary that sparks excitement, fuels wanderlust, and guarantees a memorable adventure. Let the planning begin!"
+                  "Plan a detailed ${_daysController.text}-day itinerary for a trip to ${_destinationController.text}. Preferences: ${_preferencesController.text}. Include sightseeing, food recommendations, and travel tips."
             }
           ]
         }
@@ -56,9 +57,17 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
           )
           .timeout(Duration(seconds: 15));
 
+      // Log the entire response body for debugging
+      print('Response Status: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
 
+        // Log the parsed response for debugging
+        print('Parsed Response Data: $data');
+
+        // Check if the response contains the 'candidates' key
         if (data.containsKey('candidates')) {
           var candidates = data['candidates'];
           if (candidates is List && candidates.isNotEmpty) {
@@ -107,11 +116,13 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
         _itinerary = "Request timed out. Please try again later.";
         _isLoading = false;
       });
+      print("Request timed out");
     } catch (e) {
       setState(() {
         _itinerary = "An error occurred: $e";
         _isLoading = false;
       });
+      print("Error: $e");
     }
   }
 
@@ -131,9 +142,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
               controller: _destinationController,
               decoration: InputDecoration(
                 labelText: "Enter Destination",
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange), // Orange border
-                ),
+                border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 10),
@@ -142,9 +151,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
               decoration: InputDecoration(
                 labelText:
                     "Preferences (e.g., adventure, food, budget-friendly)",
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange), // Orange border
-                ),
+                border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 10),
@@ -153,9 +160,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: "Enter Number of Days",
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.orange), // Orange border
-                ),
+                border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 15),
@@ -190,11 +195,9 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                             ),
                           ],
                         ),
-                        child: RichText(
-                          text: TextSpan(
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                            children: _getFormattedItinerary(_itinerary),
-                          ),
+                        child: Text(
+                          _itinerary,
+                          style: TextStyle(fontSize: 16),
                         ),
                       ),
                     ),
@@ -203,32 +206,5 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
         ),
       ),
     );
-  }
-
-  List<TextSpan> _getFormattedItinerary(String itinerary) {
-    List<TextSpan> spans = [];
-    RegExp boldRegex = RegExp(r'\*\*(.*?)\*\*');
-    Iterable<Match> matches = boldRegex.allMatches(itinerary);
-
-    int lastEnd = 0;
-    for (Match match in matches) {
-      // Add text before the bold part
-      if (match.start > lastEnd) {
-        spans.add(TextSpan(text: itinerary.substring(lastEnd, match.start)));
-      }
-      // Add the bold part
-      spans.add(TextSpan(
-        text: match.group(1),
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ));
-      lastEnd = match.end;
-    }
-
-    // Add any remaining text after the last bold part
-    if (lastEnd < itinerary.length) {
-      spans.add(TextSpan(text: itinerary.substring(lastEnd)));
-    }
-
-    return spans;
   }
 }

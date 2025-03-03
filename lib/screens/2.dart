@@ -1,4 +1,6 @@
 // lib/screens/home_screen.dart
+/to add in firestore 
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'hotel_list_screen.dart'; // We'll create this next
@@ -8,8 +10,7 @@ import '../services/google_auth.dart'; // Ensure this exports FirebaseServices
 import '../core/routes.dart'; // Assuming this has Routes.signIn
 import 'ItineraryScreen.dart';
 import 'profile.dart'; // Import your ProfileScreen here
-import 'mybookings.dart';
-import 'Favourites.dart';
+import '../services/firestore_service.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,6 +18,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final FirestoreService firestoreService = FirestoreService();
+
   int _selectedIndex = 0;
   // Controller for the destination field
   final TextEditingController _destinationController = TextEditingController();
@@ -182,22 +185,31 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-
           IconButton(
             icon: Icon(Icons.notifications, color: Colors.white),
-            onPressed: () {},
+            onPressed: () async {
+              await firestoreService.addHotelsData(); // Upload data
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Hotels uploaded successfully!')),
+              );
+            },
           ),
           IconButton(
             icon: Icon(Icons.account_circle, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+            },
           ),
-          // Logout Icon
           IconButton(
             icon: Icon(Icons.logout, color: Colors.white),
             onPressed: _logout,
           ),
         ],
       ),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),
@@ -360,7 +372,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-
       // Bottom Navigation Bar (example)
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
@@ -369,24 +380,6 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {
             _selectedIndex = index;
           });
-
-          if (index == 1) {
-            // Navigate to Profile Screen
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MyFavourites()), // Navigate to Profile
-            );
-          }
-
-          if (index == 2) {
-            // Navigate to Profile Screen
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MyBookings()), // Navigate to Profile
-            );
-          }
 
           if (index == 3) {
             // Navigate to Profile Screen

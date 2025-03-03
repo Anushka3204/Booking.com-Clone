@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/destination_model.dart';
 import '../services/hotel_service.dart';
+import '../screens/hotels2.dart';
 
 class HotelListScreen extends StatefulWidget {
   final String destination;
@@ -22,7 +23,7 @@ class HotelListScreen extends StatefulWidget {
 
 class _HotelListScreenState extends State<HotelListScreen> {
   late Future<List<Destination>> _futureDestinations;
-  Set<String> favoriteHotels = {};
+  Set<String> favourites = {};
 
   @override
   void initState() {
@@ -50,11 +51,7 @@ class _HotelListScreenState extends State<HotelListScreen> {
           ),
           child: Row(
             children: [
-              // Icon(Icons.arrow_back, color: Colors.black),
-              SizedBox(
-                width: 10,
-                height: 10,
-              ),
+              SizedBox(width: 10, height: 10),
               Text(
                 "${widget.destination} · ${widget.checkIn} - ${widget.checkOut}",
                 style: TextStyle(
@@ -73,9 +70,9 @@ class _HotelListScreenState extends State<HotelListScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.swap_vert, color: Colors.black), // Sort Icon
-                Icon(Icons.tune, color: Colors.black), // Filter Icon
-                Icon(Icons.map, color: Colors.black), // Map Icon
+                Icon(Icons.swap_vert, color: Colors.black),
+                Icon(Icons.tune, color: Colors.black),
+                Icon(Icons.map, color: Colors.black),
               ],
             ),
           ),
@@ -99,8 +96,7 @@ class _HotelListScreenState extends State<HotelListScreen> {
                         margin:
                             EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
+                            borderRadius: BorderRadius.circular(15)),
                         elevation: 5,
                         child: Container(
                           decoration: BoxDecoration(
@@ -146,22 +142,21 @@ class _HotelListScreenState extends State<HotelListScreen> {
                                       right: 10,
                                       child: IconButton(
                                         icon: Icon(
-                                          favoriteHotels.contains(dest.destId)
+                                          favourites.contains(dest.destId)
                                               ? Icons.favorite
                                               : Icons.favorite_border,
-                                          color: favoriteHotels
-                                                  .contains(dest.destId)
-                                              ? Colors.red
-                                              : Colors.white,
+                                          color:
+                                              favourites.contains(dest.destId)
+                                                  ? Colors.red
+                                                  : Colors.white,
                                         ),
                                         onPressed: () {
                                           setState(() {
-                                            if (favoriteHotels
+                                            if (favourites
                                                 .contains(dest.destId)) {
-                                              favoriteHotels
-                                                  .remove(dest.destId);
+                                              favourites.remove(dest.destId);
                                             } else {
-                                              favoriteHotels.add(dest.destId);
+                                              favourites.add(dest.destId);
                                             }
                                           });
                                         },
@@ -186,12 +181,6 @@ class _HotelListScreenState extends State<HotelListScreen> {
                                 Text("City: ${dest.cityName}",
                                     style: TextStyle(fontSize: 14)),
                                 SizedBox(height: 10),
-                                // Text("Latitude: ${dest.latitude}",
-                                //     style: TextStyle(fontSize: 14)),
-                                // SizedBox(height: 7),
-                                // Text("Longitude: ${dest.longitude}",
-                                //     style: TextStyle(fontSize: 14)),
-                                // SizedBox(height: 7),
                                 Text("Destination Type: ${dest.destType}",
                                     style: TextStyle(fontSize: 14)),
                                 SizedBox(height: 10),
@@ -199,7 +188,14 @@ class _HotelListScreenState extends State<HotelListScreen> {
                                   alignment: Alignment.centerRight,
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      // Open detailed hotel list screen
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Hotels2Screen(
+                                            city: dest.cityName,
+                                          ),
+                                        ),
+                                      );
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.blue[900],

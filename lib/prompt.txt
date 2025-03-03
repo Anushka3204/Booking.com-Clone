@@ -1,0 +1,28 @@
+final Map<String, dynamic> requestBody = {
+  "contents": [
+    {
+      "parts": [
+        {
+          "text": 
+              "Imagine you are an expert travel agent with years of experience designing unforgettable trips. 
+              Your task is to craft a detailed ${_daysController.text}-day itinerary for an exciting journey to ${_destinationController.text}, 
+              tailored to the traveler’s specific preferences: ${_preferencesController.text}. 
+
+              This itinerary should be a perfect blend of must-visit landmarks, hidden local gems, and off-the-beaten-path experiences that 
+              make the trip truly special. Provide recommendations for sightseeing, thrilling activities, cultural highlights, and 
+              must-try local food that will give the traveler an authentic taste of the destination. Include insider tips such as 
+              the best times to visit each location, transportation options, and budget-friendly hacks to enhance the experience. 
+
+              Maintain a lively, engaging, and playful tone, making the traveler feel as though they have a fun and knowledgeable 
+              guide accompanying them. The itinerary should be structured yet flexible, offering a balance of relaxation and exploration, 
+              allowing room for spontaneity and adventure. 
+
+              Keep the descriptions concise yet vivid, painting a picture of each day’s experience without overwhelming the traveler 
+              with excessive details. Your goal is to spark excitement, fuel wanderlust, and ensure a truly memorable adventure. 
+
+              Now, let’s create the perfect itinerary!"
+        }
+      ]
+    }
+  ]
+};

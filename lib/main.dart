@@ -4,6 +4,9 @@ import 'package:booking/core/routes.dart';
 import 'package:booking/screens/splash_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import './screens/profile.dart'; // Import profile page here.
+import './screens/BookingFormScreen.dart'; // Import MyBookings screen
+import './screens/mybookings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
