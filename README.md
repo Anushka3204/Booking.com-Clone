@@ -1,16 +1,51 @@
-# booking
+# 🏨 Booking.com Clone - Flutter  
 
-A new Flutter project.
+Welcome to the **Booking.com Clone** – a feature-rich **Flutter** app that brings seamless hotel and accommodation booking right to your fingertips! 📱✨  
 
-## Getting Started
+## 🚀 Features  
 
-This project is a starting point for a Flutter application.
+✅ **Beautiful UI** inspired by Booking.com  
+✅ **Smooth Navigation** between screens  
+✅ **User Authentication** (Sign Up & Sign In)  
+✅ **Hotel Listings & Search** 🔍  
+✅ **Detailed Hotel Pages** with images, reviews, and pricing  
+✅ **AI-Powered Itinerary Generation** ✈️  
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Special Feature: AI-Powered Itinerary Generation 🧳  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Plan your trips effortlessly with our **AI-powered itinerary generator**! 🎉  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🔹 Enter your **destination, travel days, and preferences**  
+🔹 Get a **detailed day-by-day itinerary**  
+🔹 Includes **sightseeing, food recommendations, and travel tips** 🍽️📍  
+🔹 **Playful & fun tone** for a personalized experience ✨  
+
+ 
+## 🛠️ Tech Stack  
+
+- **Flutter** (Dart) 💙  
+- **Firebase** for backend services  
+- **REST API Integration** 🌐  
+
+## 🚀 Getting Started  
+
+1️⃣ **Clone the repository**  
+
+```sh
+git clone https://github.com/Anushka3204/Booking.com-Clone.git
+cd Booking.com-Clone
+```
+
+2️⃣ **Install dependencies**  
+
+```sh
+flutter pub get
+```
+
+3️⃣ **Run the app**  
+
+```sh
+flutter run
+```
+
+Make sure you have a device/emulator running.  
