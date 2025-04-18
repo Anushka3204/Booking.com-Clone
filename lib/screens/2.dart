@@ -1,6 +1,4 @@
 // lib/screens/home_screen.dart
-/to add in firestore 
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'hotel_list_screen.dart'; // We'll create this next
