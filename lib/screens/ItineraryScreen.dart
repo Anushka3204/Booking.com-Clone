@@ -40,7 +40,7 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
           "parts": [
             {
               "text":
-                  "Imagine you are an expert travel agent with years of experience crafting the most exciting and personalized trips. Your task is to design a detailed ${_daysController.text}-day itinerary for an unforgettable journey to ${_destinationController.text}, perfectly tailored to the traveler's preferences: ${_preferencesController.text}. This itinerary should blend a mix of iconic landmarks, breathtaking natural wonders, and hidden local gems that most tourists overlook. Provide carefully curated recommendations for sightseeing, thrilling activities, cultural experiences, and must-try local dishes, ensuring a rich and immersive travel experience. Offer helpful travel tips, including the best times to visit each location, transportation options, and budget-friendly hacks. Keep the tone lively, engaging, and playful, making the traveler feel as if they have a knowledgeable yet fun-loving guide by their side. The itinerary should be structured yet flexible, allowing room for spontaneity and adventure. Make sure to strike the perfect balance between relaxation and exploration, ensuring an enriching yet enjoyable journey. Keep the details concise but vivid, painting a picture of the experience without overwhelming the traveler with excessive information. Your goal is to create an itinerary that sparks excitement, fuels wanderlust, and guarantees a memorable adventure. Let the planning begin!"
+                  "Imagine you are an expert travel agent with years of experience crafting the most exciting and personalized trips. Your task is to design a detailed ${_daysController.text}-day itinerary for an unforgettable journey to ${_destinationController.text}, perfectly tailored to the traveler's preferences: ${_preferencesController.text}. This itinerary should blend a mix of iconic landmarks, breathtaking natural wonders, and hidden local gems that most tourists overlook. Provide carefully curated recommendations for sightseeing, thrilling activities, cultural experiences, and must-try local dishes, ensuring a rich and immersive travel experience. Offer helpful travel tips, including the best times to visit each location, transportation options, and budget-friendly hacks. Keep the tone lively, engaging, and playful, making the traveler feel as if they have a knowledgeable yet fun-loving guide by their side. The itinerary should be structured yet flexible, allowing room for spontaneity and adventure. Make sure to strike the perfect balance between relaxation and exploration, ensuring an enriching yet enjoyable journey. Keep the details concise but vivid, painting a picture of the experience without overwhelming the traveler with excessive information. Your goal is to create an itinerary that sparks excitement, fuels wanderlust, and guarantees a memorable adventure. Let the planning begin! Give in format 💠 Day 1 : in bold ,the 🔶 Morning: ,🔶 Midday:,  Do not use * in response.Give some travel tips also after iternary like : 💠Travel tips(in bold) : 🔶  ...give 4-5 tipes ..leave a line after each"
             }
           ]
         }
@@ -180,7 +180,9 @@ class _ItineraryScreenState extends State<ItineraryScreen> {
                       child: Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.blue[100], // Light blue background
+                          color: Colors.blue[50],
+                          border:
+                              Border.all(color: Colors.blue[900]!, width: 2),
                           borderRadius: BorderRadius.circular(8),
                           boxShadow: [
                             BoxShadow(

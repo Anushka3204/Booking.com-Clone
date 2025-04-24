@@ -133,7 +133,8 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-            child: Text("Confirm", style: TextStyle(color: Colors.white)),
+            child:
+                Text("Proceed to pay", style: TextStyle(color: Colors.white)),
             onPressed: () {
               Navigator.pop(context);
               _openRazorpayCheckout();

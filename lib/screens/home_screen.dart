@@ -10,6 +10,7 @@ import 'ItineraryScreen.dart';
 import 'profile.dart'; // Import your ProfileScreen here
 import 'mybookings.dart';
 import 'Favourites.dart';
+import 'MovieMoodScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -188,9 +189,16 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.account_circle, color: Colors.white),
-            onPressed: () {},
+            icon: Icon(Icons.movie_filter, color: Colors.white),
+            tooltip: "Movie Mood Travel",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MovieMoodScreen()),
+              );
+            },
           ),
+
           // Logout Icon
           IconButton(
             icon: Icon(Icons.logout, color: Colors.white),
